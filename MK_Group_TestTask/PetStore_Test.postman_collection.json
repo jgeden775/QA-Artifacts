@@ -1,0 +1,200 @@
+{
+	"info": {
+		"_postman_id": "8084b767-36b4-4392-9a6b-02f52a2299ad",
+		"name": "PetStore_Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Add Pet",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"pm.collectionVariables.set(\"petID\", jsonData.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 25,\r\n  \"category\": {\r\n    \"id\": 3,\r\n    \"name\": \"rabbits\"\r\n  },\r\n  \"name\": \"Bugs Bunny\",\r\n  \"photoUrls\": [\r\n    \"string\"\r\n  ],\r\n  \"tags\": [\r\n    {\r\n      \"id\": 1,\r\n      \"name\": \"white\"\r\n    }\r\n  ],\r\n  \"status\": \"available\"\r\n}"
+				},
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/pet",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"pet"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Script To Sold",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const options = {\r",
+							"    method: 'PUT',\r",
+							"    url: 'https://petstore.swagger.io/v2/pet/',\r",
+							"    header: 'Content-Type: application/json',\r",
+							"    body: {\r",
+							"        mode: 'raw',\r",
+							"        raw:\r",
+							"        {\r",
+							"            \"id\": 25,\r",
+							"            \"category\": {\r",
+							"            \"id\": 3,\r",
+							"            \"name\": \"rabbits\"\r",
+							"        },\r",
+							"        \"name\": \"Bugs Bunny\",\r",
+							"        \"photoUrls\": [\r",
+							"        \"string\"\r",
+							"        ],\r",
+							"        \"tags\": [\r",
+							"        {\r",
+							"            \"id\": 1,\r",
+							"            \"name\": \"white\"\r",
+							"        }\r",
+							"        ],\r",
+							"        \"status\": \"sold\"\r",
+							"        }\r",
+							"    }\r",
+							"};\r",
+							"pm.sendRequest(options, (error, response) => {\r",
+							"    if (error) throw new Error(error);\r",
+							"    console.log(response.json());\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/pet/{{petID}}",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"pet",
+						"{{petID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Verify Pet",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/pet/{{petID}}",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"pet",
+						"{{petID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Pet",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/pet/{{petID}}",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"pet",
+						"{{petID}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "petID",
+			"value": "",
+			"type": "default"
+		}
+	]
+}

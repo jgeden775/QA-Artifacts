@@ -1,0 +1,14 @@
+Последовательность команд такая:
+
+cat > file.txt
+au
+hh
+ha
+fa
+jj
+kl
+lp
+at
+fa
+
+cat file.txt | sort | uniq -c -d

@@ -1,0 +1,3076 @@
+{
+	"info": {
+		"_postman_id": "ade13eb4-bb03-4494-bcc4-ed88dc657044",
+		"name": "Reg_&_Auth_test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "admin_auth",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"pm.collectionVariables.set(\"adm_token\", jsonData.token);\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "{{adm_login}}",
+							"type": "default"
+						},
+						{
+							"key": "password",
+							"value": "{{adm_pass}}",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/login",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user_reg_valid",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"pm.collectionVariables.set(\"usr_login\", jsonData.username);\r",
+							"pm.collectionVariables.set(\"usr_pass\", jsonData.password);\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{adm_token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": [],
+							"disabled": true
+						},
+						{
+							"key": "firstName",
+							"value": "Jack",
+							"type": "default"
+						},
+						{
+							"key": "lastName",
+							"value": "Blades",
+							"type": "default"
+						},
+						{
+							"key": "username",
+							"value": "Jack00",
+							"type": "default"
+						},
+						{
+							"key": "phone",
+							"value": "89010000000",
+							"type": "default"
+						},
+						{
+							"key": "sex",
+							"value": "male",
+							"type": "default"
+						},
+						{
+							"key": "birthDate",
+							"value": "1998-10-05",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/dummies",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"dummies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user_reg_empty_img",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{adm_token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": []
+						},
+						{
+							"key": "firstName",
+							"value": "Jack",
+							"type": "default"
+						},
+						{
+							"key": "lastName",
+							"value": "Blades",
+							"type": "default"
+						},
+						{
+							"key": "username",
+							"value": "Jack01",
+							"type": "default"
+						},
+						{
+							"key": "phone",
+							"value": "89010000001",
+							"type": "default"
+						},
+						{
+							"key": "sex",
+							"value": "male",
+							"type": "default"
+						},
+						{
+							"key": "birthDate",
+							"value": "1998-10-05",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/dummies",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"dummies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user_reg_empty_firstName",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{adm_token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": [],
+							"disabled": true
+						},
+						{
+							"key": "firstName",
+							"value": "",
+							"type": "default"
+						},
+						{
+							"key": "lastName",
+							"value": "Blades",
+							"type": "default"
+						},
+						{
+							"key": "username",
+							"value": "Jack02",
+							"type": "default"
+						},
+						{
+							"key": "phone",
+							"value": "89010000002",
+							"type": "default"
+						},
+						{
+							"key": "sex",
+							"value": "male",
+							"type": "default"
+						},
+						{
+							"key": "birthDate",
+							"value": "1998-10-05",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/dummies",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"dummies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user_reg_empty_lastName",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{adm_token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": [],
+							"disabled": true
+						},
+						{
+							"key": "firstName",
+							"value": "Jack",
+							"type": "default"
+						},
+						{
+							"key": "lastName",
+							"value": "",
+							"type": "default"
+						},
+						{
+							"key": "username",
+							"value": "Jack03",
+							"type": "default"
+						},
+						{
+							"key": "phone",
+							"value": "89010000003",
+							"type": "default"
+						},
+						{
+							"key": "sex",
+							"value": "male",
+							"type": "default"
+						},
+						{
+							"key": "birthDate",
+							"value": "1998-10-05",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/dummies",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"dummies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user_reg_empty_username",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{adm_token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": [],
+							"disabled": true
+						},
+						{
+							"key": "firstName",
+							"value": "Jack",
+							"type": "default"
+						},
+						{
+							"key": "lastName",
+							"value": "Blades",
+							"type": "default"
+						},
+						{
+							"key": "username",
+							"value": "",
+							"type": "default"
+						},
+						{
+							"key": "phone",
+							"value": "89010000004",
+							"type": "default"
+						},
+						{
+							"key": "sex",
+							"value": "male",
+							"type": "default"
+						},
+						{
+							"key": "birthDate",
+							"value": "1998-10-05",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/dummies",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"dummies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user_reg_empty_phone",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{adm_token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": [],
+							"disabled": true
+						},
+						{
+							"key": "firstName",
+							"value": "Jack",
+							"type": "default"
+						},
+						{
+							"key": "lastName",
+							"value": "Blades",
+							"type": "default"
+						},
+						{
+							"key": "username",
+							"value": "Jack05",
+							"type": "default"
+						},
+						{
+							"key": "phone",
+							"value": "",
+							"type": "default"
+						},
+						{
+							"key": "sex",
+							"value": "male",
+							"type": "default"
+						},
+						{
+							"key": "birthDate",
+							"value": "1998-10-05",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/dummies",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"dummies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user_reg_empty_sex",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{adm_token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": [],
+							"disabled": true
+						},
+						{
+							"key": "firstName",
+							"value": "Jack",
+							"type": "default"
+						},
+						{
+							"key": "lastName",
+							"value": "Blades",
+							"type": "default"
+						},
+						{
+							"key": "username",
+							"value": "Jack06",
+							"type": "default"
+						},
+						{
+							"key": "phone",
+							"value": "89010000006",
+							"type": "default"
+						},
+						{
+							"key": "sex",
+							"value": "",
+							"type": "default"
+						},
+						{
+							"key": "birthDate",
+							"value": "1998-10-05",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/dummies",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"dummies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user_reg_empty_birthDate",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{adm_token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": [],
+							"disabled": true
+						},
+						{
+							"key": "firstName",
+							"value": "Jack",
+							"type": "default"
+						},
+						{
+							"key": "lastName",
+							"value": "Blades",
+							"type": "default"
+						},
+						{
+							"key": "username",
+							"value": "Jack07",
+							"type": "default"
+						},
+						{
+							"key": "phone",
+							"value": "89010000007",
+							"type": "default"
+						},
+						{
+							"key": "sex",
+							"value": "male",
+							"type": "default"
+						},
+						{
+							"key": "birthDate",
+							"value": "",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/dummies",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"dummies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user_reg_firstName_<3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{adm_token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": [],
+							"disabled": true
+						},
+						{
+							"key": "firstName",
+							"value": "Ja",
+							"type": "default"
+						},
+						{
+							"key": "lastName",
+							"value": "Blades",
+							"type": "default"
+						},
+						{
+							"key": "username",
+							"value": "Jack08",
+							"type": "default"
+						},
+						{
+							"key": "phone",
+							"value": "89010000008",
+							"type": "default"
+						},
+						{
+							"key": "sex",
+							"value": "male",
+							"type": "default"
+						},
+						{
+							"key": "birthDate",
+							"value": "1998-10-05",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/dummies",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"dummies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user_reg_firstName_>20",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{adm_token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": [],
+							"disabled": true
+						},
+						{
+							"key": "firstName",
+							"value": "JackIsBackJackIsBack09",
+							"type": "default"
+						},
+						{
+							"key": "lastName",
+							"value": "Blades",
+							"type": "default"
+						},
+						{
+							"key": "username",
+							"value": "Jack09",
+							"type": "default"
+						},
+						{
+							"key": "phone",
+							"value": "89010000009",
+							"type": "default"
+						},
+						{
+							"key": "sex",
+							"value": "male",
+							"type": "default"
+						},
+						{
+							"key": "birthDate",
+							"value": "1998-10-05",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/dummies",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"dummies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user_reg_lastName_<3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{adm_token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": [],
+							"disabled": true
+						},
+						{
+							"key": "firstName",
+							"value": "Jack",
+							"type": "default"
+						},
+						{
+							"key": "lastName",
+							"value": "Bl",
+							"type": "default"
+						},
+						{
+							"key": "username",
+							"value": "Jack10",
+							"type": "default"
+						},
+						{
+							"key": "phone",
+							"value": "89010000010",
+							"type": "default"
+						},
+						{
+							"key": "sex",
+							"value": "male",
+							"type": "default"
+						},
+						{
+							"key": "birthDate",
+							"value": "1998-10-05",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/dummies",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"dummies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user_reg_lastName_>20",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{adm_token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": [],
+							"disabled": true
+						},
+						{
+							"key": "firstName",
+							"value": "Jack",
+							"type": "default"
+						},
+						{
+							"key": "lastName",
+							"value": "BladesBladesBladesOff",
+							"type": "default"
+						},
+						{
+							"key": "username",
+							"value": "Jack11",
+							"type": "default"
+						},
+						{
+							"key": "phone",
+							"value": "89010000011",
+							"type": "default"
+						},
+						{
+							"key": "sex",
+							"value": "male",
+							"type": "default"
+						},
+						{
+							"key": "birthDate",
+							"value": "1998-10-05",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/dummies",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"dummies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user_reg_username_<3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{adm_token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": [],
+							"disabled": true
+						},
+						{
+							"key": "firstName",
+							"value": "Jack",
+							"type": "default"
+						},
+						{
+							"key": "lastName",
+							"value": "Blades",
+							"type": "default"
+						},
+						{
+							"key": "username",
+							"value": "J5",
+							"type": "default"
+						},
+						{
+							"key": "phone",
+							"value": "89010000012",
+							"type": "default"
+						},
+						{
+							"key": "sex",
+							"value": "male",
+							"type": "default"
+						},
+						{
+							"key": "birthDate",
+							"value": "1998-10-05",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/dummies",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"dummies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user_reg_username_>20",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{adm_token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": [],
+							"disabled": true
+						},
+						{
+							"key": "firstName",
+							"value": "Jack",
+							"type": "default"
+						},
+						{
+							"key": "lastName",
+							"value": "Blades",
+							"type": "default"
+						},
+						{
+							"key": "username",
+							"value": "Jjjjjjjack001111133333",
+							"type": "default"
+						},
+						{
+							"key": "phone",
+							"value": "89010000013",
+							"type": "default"
+						},
+						{
+							"key": "sex",
+							"value": "male",
+							"type": "default"
+						},
+						{
+							"key": "birthDate",
+							"value": "1998-10-05",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/dummies",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"dummies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user_reg_birthDate_today",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{adm_token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": [],
+							"disabled": true
+						},
+						{
+							"key": "firstName",
+							"value": "Jack",
+							"type": "default"
+						},
+						{
+							"key": "lastName",
+							"value": "Blades",
+							"type": "default"
+						},
+						{
+							"key": "username",
+							"value": "Jack14",
+							"type": "default"
+						},
+						{
+							"key": "phone",
+							"value": "89010000014",
+							"type": "default"
+						},
+						{
+							"key": "sex",
+							"value": "male",
+							"type": "default"
+						},
+						{
+							"key": "birthDate",
+							"value": "2023-01-29",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/dummies",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"dummies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user_reg_birthDate_5_year",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{adm_token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": [],
+							"disabled": true
+						},
+						{
+							"key": "firstName",
+							"value": "Jack",
+							"type": "default"
+						},
+						{
+							"key": "lastName",
+							"value": "Blades",
+							"type": "default"
+						},
+						{
+							"key": "username",
+							"value": "Jack15",
+							"type": "default"
+						},
+						{
+							"key": "phone",
+							"value": "89010000015",
+							"type": "default"
+						},
+						{
+							"key": "sex",
+							"value": "male",
+							"type": "default"
+						},
+						{
+							"key": "birthDate",
+							"value": "2018-01-28",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/dummies",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"dummies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user_reg_birthDate_7_year",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{adm_token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": [],
+							"disabled": true
+						},
+						{
+							"key": "firstName",
+							"value": "Jack",
+							"type": "default"
+						},
+						{
+							"key": "lastName",
+							"value": "Blades",
+							"type": "default"
+						},
+						{
+							"key": "username",
+							"value": "Jack16",
+							"type": "default"
+						},
+						{
+							"key": "phone",
+							"value": "89010000016",
+							"type": "default"
+						},
+						{
+							"key": "sex",
+							"value": "male",
+							"type": "default"
+						},
+						{
+							"key": "birthDate",
+							"value": "2016-01-28",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/dummies",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"dummies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user_reg_birthDate_8_year",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{adm_token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": [],
+							"disabled": true
+						},
+						{
+							"key": "firstName",
+							"value": "Jack",
+							"type": "default"
+						},
+						{
+							"key": "lastName",
+							"value": "Blades",
+							"type": "default"
+						},
+						{
+							"key": "username",
+							"value": "Jack17",
+							"type": "default"
+						},
+						{
+							"key": "phone",
+							"value": "89010000017",
+							"type": "default"
+						},
+						{
+							"key": "sex",
+							"value": "male",
+							"type": "default"
+						},
+						{
+							"key": "birthDate",
+							"value": "2015-01-28",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/dummies",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"dummies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user_reg_birthDate_50_year",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{adm_token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": [],
+							"disabled": true
+						},
+						{
+							"key": "firstName",
+							"value": "Jack",
+							"type": "default"
+						},
+						{
+							"key": "lastName",
+							"value": "Blades",
+							"type": "default"
+						},
+						{
+							"key": "username",
+							"value": "Jack18",
+							"type": "default"
+						},
+						{
+							"key": "phone",
+							"value": "89010000018",
+							"type": "default"
+						},
+						{
+							"key": "sex",
+							"value": "male",
+							"type": "default"
+						},
+						{
+							"key": "birthDate",
+							"value": "1973-01-28",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/dummies",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"dummies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user_reg_birthDate_99_year",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{adm_token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": [],
+							"disabled": true
+						},
+						{
+							"key": "firstName",
+							"value": "Jack",
+							"type": "default"
+						},
+						{
+							"key": "lastName",
+							"value": "Blades",
+							"type": "default"
+						},
+						{
+							"key": "username",
+							"value": "Jack19",
+							"type": "default"
+						},
+						{
+							"key": "phone",
+							"value": "89010000019",
+							"type": "default"
+						},
+						{
+							"key": "sex",
+							"value": "male",
+							"type": "default"
+						},
+						{
+							"key": "birthDate",
+							"value": "1924-01-28",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/dummies",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"dummies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user_reg_birthDate_100_year",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{adm_token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": [],
+							"disabled": true
+						},
+						{
+							"key": "firstName",
+							"value": "Jack",
+							"type": "default"
+						},
+						{
+							"key": "lastName",
+							"value": "Blades",
+							"type": "default"
+						},
+						{
+							"key": "username",
+							"value": "Jack20",
+							"type": "default"
+						},
+						{
+							"key": "phone",
+							"value": "89010000020",
+							"type": "default"
+						},
+						{
+							"key": "sex",
+							"value": "male",
+							"type": "default"
+						},
+						{
+							"key": "birthDate",
+							"value": "1923-01-28",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/dummies",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"dummies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user_reg_birthDate_101_year",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{adm_token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": [],
+							"disabled": true
+						},
+						{
+							"key": "firstName",
+							"value": "Jack",
+							"type": "default"
+						},
+						{
+							"key": "lastName",
+							"value": "Blades",
+							"type": "default"
+						},
+						{
+							"key": "username",
+							"value": "Jack21",
+							"type": "default"
+						},
+						{
+							"key": "phone",
+							"value": "89010000021",
+							"type": "default"
+						},
+						{
+							"key": "sex",
+							"value": "male",
+							"type": "default"
+						},
+						{
+							"key": "birthDate",
+							"value": "1922-01-28",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/dummies",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"dummies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user_reg_phone_9_sym",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{adm_token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": [],
+							"disabled": true
+						},
+						{
+							"key": "firstName",
+							"value": "Jack",
+							"type": "default"
+						},
+						{
+							"key": "lastName",
+							"value": "Blades",
+							"type": "default"
+						},
+						{
+							"key": "username",
+							"value": "Jack22",
+							"type": "default"
+						},
+						{
+							"key": "phone",
+							"value": "890100022",
+							"type": "default"
+						},
+						{
+							"key": "sex",
+							"value": "male",
+							"type": "default"
+						},
+						{
+							"key": "birthDate",
+							"value": "1998-10-05",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/dummies",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"dummies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user_reg_phone_10_sym",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{adm_token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": [],
+							"disabled": true
+						},
+						{
+							"key": "firstName",
+							"value": "Jack",
+							"type": "default"
+						},
+						{
+							"key": "lastName",
+							"value": "Blades",
+							"type": "default"
+						},
+						{
+							"key": "username",
+							"value": "Jack23",
+							"type": "default"
+						},
+						{
+							"key": "phone",
+							"value": "8901000023",
+							"type": "default"
+						},
+						{
+							"key": "sex",
+							"value": "male",
+							"type": "default"
+						},
+						{
+							"key": "birthDate",
+							"value": "1998-10-05",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/dummies",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"dummies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user_reg_phone_12_sym",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{adm_token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": [],
+							"disabled": true
+						},
+						{
+							"key": "firstName",
+							"value": "Jack",
+							"type": "default"
+						},
+						{
+							"key": "lastName",
+							"value": "Blades",
+							"type": "default"
+						},
+						{
+							"key": "username",
+							"value": "Jack24",
+							"type": "default"
+						},
+						{
+							"key": "phone",
+							"value": "890100000024",
+							"type": "default"
+						},
+						{
+							"key": "sex",
+							"value": "male",
+							"type": "default"
+						},
+						{
+							"key": "birthDate",
+							"value": "1998-10-05",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/dummies",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"dummies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user_reg_phone_13_sym",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{adm_token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": [],
+							"disabled": true
+						},
+						{
+							"key": "firstName",
+							"value": "Jack",
+							"type": "default"
+						},
+						{
+							"key": "lastName",
+							"value": "Blades",
+							"type": "default"
+						},
+						{
+							"key": "username",
+							"value": "Jack25",
+							"type": "default"
+						},
+						{
+							"key": "phone",
+							"value": "8901000000025",
+							"type": "default"
+						},
+						{
+							"key": "sex",
+							"value": "male",
+							"type": "default"
+						},
+						{
+							"key": "birthDate",
+							"value": "1998-10-05",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/dummies",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"dummies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user_reg_phone_+_first",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{adm_token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": [],
+							"disabled": true
+						},
+						{
+							"key": "firstName",
+							"value": "Jack",
+							"type": "default"
+						},
+						{
+							"key": "lastName",
+							"value": "Blades",
+							"type": "default"
+						},
+						{
+							"key": "username",
+							"value": "Jack26",
+							"type": "default"
+						},
+						{
+							"key": "phone",
+							"value": "+79010000026",
+							"type": "default"
+						},
+						{
+							"key": "sex",
+							"value": "male",
+							"type": "default"
+						},
+						{
+							"key": "birthDate",
+							"value": "1998-10-05",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/dummies",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"dummies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user_reg_phone_+_last",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{adm_token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": [],
+							"disabled": true
+						},
+						{
+							"key": "firstName",
+							"value": "Jack",
+							"type": "default"
+						},
+						{
+							"key": "lastName",
+							"value": "Blades",
+							"type": "default"
+						},
+						{
+							"key": "username",
+							"value": "Jack27",
+							"type": "default"
+						},
+						{
+							"key": "phone",
+							"value": "79010000027+",
+							"type": "default"
+						},
+						{
+							"key": "sex",
+							"value": "male",
+							"type": "default"
+						},
+						{
+							"key": "birthDate",
+							"value": "1998-10-05",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/dummies",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"dummies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user_reg_phone_+_mid",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{adm_token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": [],
+							"disabled": true
+						},
+						{
+							"key": "firstName",
+							"value": "Jack",
+							"type": "default"
+						},
+						{
+							"key": "lastName",
+							"value": "Blades",
+							"type": "default"
+						},
+						{
+							"key": "username",
+							"value": "Jack28",
+							"type": "default"
+						},
+						{
+							"key": "phone",
+							"value": "790100+00028",
+							"type": "default"
+						},
+						{
+							"key": "sex",
+							"value": "male",
+							"type": "default"
+						},
+						{
+							"key": "birthDate",
+							"value": "1998-10-05",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/dummies",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"dummies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user_reg_username_dub",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{adm_token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": [],
+							"disabled": true
+						},
+						{
+							"key": "firstName",
+							"value": "Jack",
+							"type": "default"
+						},
+						{
+							"key": "lastName",
+							"value": "Blades",
+							"type": "default"
+						},
+						{
+							"key": "username",
+							"value": "Jack00",
+							"type": "default"
+						},
+						{
+							"key": "phone",
+							"value": "89010000029",
+							"type": "default"
+						},
+						{
+							"key": "sex",
+							"value": "male",
+							"type": "default"
+						},
+						{
+							"key": "birthDate",
+							"value": "1998-10-05",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/dummies",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"dummies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user_reg_phone_dub",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{adm_token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": [],
+							"disabled": true
+						},
+						{
+							"key": "firstName",
+							"value": "Jack",
+							"type": "default"
+						},
+						{
+							"key": "lastName",
+							"value": "Blades",
+							"type": "default"
+						},
+						{
+							"key": "username",
+							"value": "Jack30",
+							"type": "default"
+						},
+						{
+							"key": "phone",
+							"value": "89010000000",
+							"type": "default"
+						},
+						{
+							"key": "sex",
+							"value": "male",
+							"type": "default"
+						},
+						{
+							"key": "birthDate",
+							"value": "1998-10-05",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/dummies",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"dummies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user_reg_invalid_sex",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{adm_token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": [],
+							"disabled": true
+						},
+						{
+							"key": "firstName",
+							"value": "Jack",
+							"type": "default"
+						},
+						{
+							"key": "lastName",
+							"value": "Blades",
+							"type": "default"
+						},
+						{
+							"key": "username",
+							"value": "Jack31",
+							"type": "default"
+						},
+						{
+							"key": "phone",
+							"value": "89010000031",
+							"type": "default"
+						},
+						{
+							"key": "sex",
+							"value": "femen",
+							"type": "default"
+						},
+						{
+							"key": "birthDate",
+							"value": "1998-10-05",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/dummies",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"dummies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user_reg_invalid_birthDate",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{adm_token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": [],
+							"disabled": true
+						},
+						{
+							"key": "firstName",
+							"value": "Jack",
+							"type": "default"
+						},
+						{
+							"key": "lastName",
+							"value": "Blades",
+							"type": "default"
+						},
+						{
+							"key": "username",
+							"value": "Jack32",
+							"type": "default"
+						},
+						{
+							"key": "phone",
+							"value": "89010000032",
+							"type": "default"
+						},
+						{
+							"key": "sex",
+							"value": "male",
+							"type": "default"
+						},
+						{
+							"key": "birthDate",
+							"value": "12-10-1995",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/dummies",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"dummies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user_auth",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"pm.collectionVariables.set(\"usr_token\", jsonData.token);\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "{{usr_login}}",
+							"type": "default"
+						},
+						{
+							"key": "password",
+							"value": "{{usr_pass}}",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/login",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user_auth_invalid_username",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 401\", function () {\r",
+							"    pm.response.to.have.status(401);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "JackBl044",
+							"type": "default"
+						},
+						{
+							"key": "password",
+							"value": "{{usr_pass}}",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/login",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user_auth_invalid_pass",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 401\", function () {\r",
+							"    pm.response.to.have.status(401);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "{{usr_login}}",
+							"type": "default"
+						},
+						{
+							"key": "password",
+							"value": "1350935njnn135",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/login",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user_auth_empty_username",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 401\", function () {\r",
+							"    pm.response.to.have.status(401);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "",
+							"type": "default"
+						},
+						{
+							"key": "password",
+							"value": "{{usr_pass}}",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/login",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user_auth_empty_pass",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 401\", function () {\r",
+							"    pm.response.to.have.status(401);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "{{usr_login}}",
+							"type": "default"
+						},
+						{
+							"key": "password",
+							"value": "",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/login",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "adm_login",
+			"value": "GB2022111948e18",
+			"type": "default"
+		},
+		{
+			"key": "adm_pass",
+			"value": "2ec25dbf2a",
+			"type": "default"
+		},
+		{
+			"key": "adm_token",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "usr_login",
+			"value": "Jack00",
+			"type": "default"
+		},
+		{
+			"key": "usr_pass",
+			"value": "6b4271b90c",
+			"type": "default"
+		},
+		{
+			"key": "usr_token",
+			"value": "",
+			"type": "default"
+		}
+	]
+}

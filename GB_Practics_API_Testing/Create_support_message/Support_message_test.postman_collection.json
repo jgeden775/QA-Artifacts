@@ -1,0 +1,691 @@
+{
+	"info": {
+		"_postman_id": "eacd967e-7c39-4d51-a115-971845198250",
+		"name": "Support_message_test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "message_valid",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Tester",
+							"type": "default"
+						},
+						{
+							"key": "email",
+							"value": "tester@my.com",
+							"type": "default"
+						},
+						{
+							"key": "message",
+							"value": "Lorem ipsum dolor sit amet, consectetuer adip",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/support/?timestamp=1676397221",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"support",
+						""
+					],
+					"query": [
+						{
+							"key": "timestamp",
+							"value": "1676397221"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "message_no_name",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "",
+							"type": "default"
+						},
+						{
+							"key": "email",
+							"value": "tester@my.com",
+							"type": "default"
+						},
+						{
+							"key": "message",
+							"value": "Lorem ipsum dolor sit amet, consectetuer adip",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/support/?timestamp=1676397221",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"support",
+						""
+					],
+					"query": [
+						{
+							"key": "timestamp",
+							"value": "1676397221"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "message_no_email",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Tester",
+							"type": "default"
+						},
+						{
+							"key": "email",
+							"value": "",
+							"type": "default"
+						},
+						{
+							"key": "message",
+							"value": "Lorem ipsum dolor sit amet, consectetuer adip",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/support/?timestamp=1676397221",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"support",
+						""
+					],
+					"query": [
+						{
+							"key": "timestamp",
+							"value": "1676397221"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "message_no_message",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Tester",
+							"type": "default"
+						},
+						{
+							"key": "email",
+							"value": "tester@my.com",
+							"type": "default"
+						},
+						{
+							"key": "message",
+							"value": "",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/support/?timestamp=1676397221",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"support",
+						""
+					],
+					"query": [
+						{
+							"key": "timestamp",
+							"value": "1676397221"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "message_name_30",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "012345678901234567890123456789",
+							"type": "default"
+						},
+						{
+							"key": "email",
+							"value": "tester@my.com",
+							"type": "default"
+						},
+						{
+							"key": "message",
+							"value": "Lorem ipsum dolor sit amet, consectetuer adip",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/support/?timestamp=1676397221",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"support",
+						""
+					],
+					"query": [
+						{
+							"key": "timestamp",
+							"value": "1676397221"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "message_name_31",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "0123456789012345678901234567890",
+							"type": "default"
+						},
+						{
+							"key": "email",
+							"value": "tester@my.com",
+							"type": "default"
+						},
+						{
+							"key": "message",
+							"value": "Lorem ipsum dolor sit amet, consectetuer adip",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/support/?timestamp=1676397221",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"support",
+						""
+					],
+					"query": [
+						{
+							"key": "timestamp",
+							"value": "1676397221"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "message_email_no_@",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Tester",
+							"type": "default"
+						},
+						{
+							"key": "email",
+							"value": "testermy.com",
+							"type": "default"
+						},
+						{
+							"key": "message",
+							"value": "Lorem ipsum dolor sit amet, consectetuer adip",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/support/?timestamp=1676397221",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"support",
+						""
+					],
+					"query": [
+						{
+							"key": "timestamp",
+							"value": "1676397221"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "message_message_1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Tester",
+							"type": "default"
+						},
+						{
+							"key": "email",
+							"value": "tester@my.com",
+							"type": "default"
+						},
+						{
+							"key": "message",
+							"value": "S",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/support/?timestamp=1676397221",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"support",
+						""
+					],
+					"query": [
+						{
+							"key": "timestamp",
+							"value": "1676397221"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "message_message_100",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Tester",
+							"type": "default"
+						},
+						{
+							"key": "email",
+							"value": "tester@my.com",
+							"type": "default"
+						},
+						{
+							"key": "message",
+							"value": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/support/?timestamp=1676397221",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"support",
+						""
+					],
+					"query": [
+						{
+							"key": "timestamp",
+							"value": "1676397221"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "message_message_101",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Tester",
+							"type": "default"
+						},
+						{
+							"key": "email",
+							"value": "tester@my.com",
+							"type": "default"
+						},
+						{
+							"key": "message",
+							"value": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ute",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/support/?timestamp=1676397221",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"support",
+						""
+					],
+					"query": [
+						{
+							"key": "timestamp",
+							"value": "1676397221"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "message_valid_no_timestamp",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Tester",
+							"type": "default"
+						},
+						{
+							"key": "email",
+							"value": "tester@my.com",
+							"type": "default"
+						},
+						{
+							"key": "message",
+							"value": "Lorem ipsum dolor sit amet, consectetuer adip",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/support/?timestamp=",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"support",
+						""
+					],
+					"query": [
+						{
+							"key": "timestamp",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

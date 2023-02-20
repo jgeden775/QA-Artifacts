@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:mockService id="fae4e535-d0df-4a3a-aac9-2b43e2dc8e82" port="8080" path="/" host="JOHN-DESKTOP" name="MockService SpellService" bindToHostOnly="false" docroot="" xmlns:con="http://eviware.com/soapui/config"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:properties/><con:mockOperation name="checkTexts" id="24194123-a55d-4570-b3da-d1c4bdac5d88" interface="SpellServiceSoap12" operation="checkTexts"><con:settings/><con:defaultResponse>Request Lang RU</con:defaultResponse><con:dispatchStyle>QUERY_MATCH</con:dispatchStyle><con:response name="Request Lang RU" id="a02af943-273e-4578-a6ba-00afa78ddc04" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://www.w3.org/2003/05/soap-envelope">
+   <soap:Body>
+      <CheckTextsResponse xmlns="http://speller.yandex.net/services/spellservice">
+         <ArrayOfSpellResult>
+            <SpellResult>
+               <error code="1" pos="0" row="0" col="0" len="6">
+                  <word>Полноч</word>
+                  <s>Полночь</s>
+               </error>
+            </SpellResult>
+         </ArrayOfSpellResult>
+      </CheckTextsResponse>
+   </soap:Body>
+</soap:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://speller.yandex.net/services/spellservice/SpellServiceSoap/checkTextsResponse"/></con:response><con:dispatchConfig xsi:type="con:MockOperationQueryMatchDispatch" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:query><con:name>Полначь</con:name><con:query>declare namespace spel='http://speller.yandex.net/services/spellservice';
+//spel:text
+</con:query><con:match>Полначь</con:match><con:response>Request Lang RU</con:response></con:query><con:query><con:name>Полноч</con:name><con:query>declare namespace spel='http://speller.yandex.net/services/spellservice';
+//spel:text
+</con:query><con:match>Полноч</con:match><con:response>Request Lang RU</con:response></con:query></con:dispatchConfig></con:mockOperation></con:mockService>

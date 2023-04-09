@@ -1,6 +1,6 @@
 Последовательность команд такая:
 
-cat > file.txt
+cat > file.txt << eof
 au
 hh
 ha
@@ -10,5 +10,6 @@ kl
 lp
 at
 fa
+eof
 
 cat file.txt | sort | uniq -c -d

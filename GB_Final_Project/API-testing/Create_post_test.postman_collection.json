@@ -1,0 +1,2152 @@
+{
+	"info": {
+		"_postman_id": "b076fb7e-3dd5-46fa-86df-ec8797dd1fd2",
+		"name": "Create_post_test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "user_auth",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"pm.collectionVariables.set(\"usr_token\", jsonData.token);\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "{{usr_login}}",
+							"type": "default"
+						},
+						{
+							"key": "password",
+							"value": "{{usr_pass}}",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/login",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create_post_valid",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{usr_token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/E:/Downloads/001.jpg"
+						},
+						{
+							"key": "title",
+							"value": "Title 00",
+							"type": "default"
+						},
+						{
+							"key": "description",
+							"value": "Description00",
+							"type": "default"
+						},
+						{
+							"key": "content",
+							"value": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis, magni delectus eveniet voluptatum fugiat magnam modi quos et quo corrupti a est incidunt quae fuga repellendus nihil deserunt maiores cumque saepe possimus officiis facere. Hic, illum. Amet ratione voluptatibus consequuntur, tempore optio ut suscipit a quidem beatae, labore quaerat totam.",
+							"type": "default"
+						},
+						{
+							"key": "isDraft",
+							"value": "0",
+							"type": "default"
+						},
+						{
+							"key": "delayPublishTo",
+							"value": "2023-02-09",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/posts",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create_post_empty",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{usr_token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": []
+						},
+						{
+							"key": "title",
+							"value": "",
+							"type": "default"
+						},
+						{
+							"key": "description",
+							"value": "",
+							"type": "default"
+						},
+						{
+							"key": "content",
+							"value": "",
+							"type": "default"
+						},
+						{
+							"key": "isDraft",
+							"value": "",
+							"type": "default"
+						},
+						{
+							"key": "delayPublishTo",
+							"value": "",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/posts",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create_post_empty_2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{usr_token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": []
+						},
+						{
+							"key": "title",
+							"value": "",
+							"type": "default"
+						},
+						{
+							"key": "description",
+							"value": "",
+							"type": "default"
+						},
+						{
+							"key": "content",
+							"value": "",
+							"type": "default"
+						},
+						{
+							"key": "isDraft",
+							"value": "0",
+							"type": "default"
+						},
+						{
+							"key": "delayPublishTo",
+							"value": "2023-02-09",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/posts",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create_post_title_only",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{usr_token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": []
+						},
+						{
+							"key": "title",
+							"value": "Title01",
+							"type": "default"
+						},
+						{
+							"key": "description",
+							"value": "",
+							"type": "default"
+						},
+						{
+							"key": "content",
+							"value": "",
+							"type": "default"
+						},
+						{
+							"key": "isDraft",
+							"value": "",
+							"type": "default"
+						},
+						{
+							"key": "delayPublishTo",
+							"value": "",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/posts",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create_post_desc_only",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{usr_token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": []
+						},
+						{
+							"key": "title",
+							"value": "",
+							"type": "default"
+						},
+						{
+							"key": "description",
+							"value": "Description01",
+							"type": "default"
+						},
+						{
+							"key": "content",
+							"value": "",
+							"type": "default"
+						},
+						{
+							"key": "isDraft",
+							"value": "",
+							"type": "default"
+						},
+						{
+							"key": "delayPublishTo",
+							"value": "",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/posts",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create_post_content_only",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{usr_token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": []
+						},
+						{
+							"key": "title",
+							"value": "",
+							"type": "default"
+						},
+						{
+							"key": "description",
+							"value": "",
+							"type": "default"
+						},
+						{
+							"key": "content",
+							"value": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis, magni delectus eveniet voluptatum fugiat magnam modi quos et quo corrupti a est incidunt quae fuga repellendus nihil deserunt maiores cumque saepe possimus officiis facere. Hic, illum. Amet ratione voluptatibus consequuntur, tempore optio ut suscipit a quidem beatae, labore quaerat totam.",
+							"type": "default"
+						},
+						{
+							"key": "isDraft",
+							"value": "",
+							"type": "default"
+						},
+						{
+							"key": "delayPublishTo",
+							"value": "",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/posts",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create_post_image_only",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{usr_token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/E:/Downloads/001.jpg"
+						},
+						{
+							"key": "title",
+							"value": "",
+							"type": "default"
+						},
+						{
+							"key": "description",
+							"value": "",
+							"type": "default"
+						},
+						{
+							"key": "content",
+							"value": "",
+							"type": "default"
+						},
+						{
+							"key": "isDraft",
+							"value": "",
+							"type": "default"
+						},
+						{
+							"key": "delayPublishTo",
+							"value": "",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/posts",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create_post_valid_title_39",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{usr_token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/E:/Downloads/001.jpg"
+						},
+						{
+							"key": "title",
+							"value": "123456789012345678901234567890123456789",
+							"type": "default"
+						},
+						{
+							"key": "description",
+							"value": "Description02",
+							"type": "default"
+						},
+						{
+							"key": "content",
+							"value": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam consectetur necessitatibus mollitia fugiat sunt hic error quia doloribus quasi est.",
+							"type": "default"
+						},
+						{
+							"key": "isDraft",
+							"value": "0",
+							"type": "default"
+						},
+						{
+							"key": "delayPublishTo",
+							"value": "2023-02-09",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/posts",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create_post_title_40",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{usr_token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/E:/Downloads/001.jpg"
+						},
+						{
+							"key": "title",
+							"value": "1234567890123456789012345678901234567890",
+							"type": "default"
+						},
+						{
+							"key": "description",
+							"value": "Description03",
+							"type": "default"
+						},
+						{
+							"key": "content",
+							"value": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis, magni delectus eveniet voluptatum fugiat magnam modi quos et quo corrupti a est incidunt quae fuga repellendus nihil deserunt maiores cumque saepe possimus officiis facere. Hic, illum. Amet ratione voluptatibus consequuntur, tempore optio ut suscipit a quidem beatae, labore quaerat totam.",
+							"type": "default"
+						},
+						{
+							"key": "isDraft",
+							"value": "0",
+							"type": "default"
+						},
+						{
+							"key": "delayPublishTo",
+							"value": "2023-02-09",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/posts",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create_post_title_41",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{usr_token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/E:/Downloads/001.jpg"
+						},
+						{
+							"key": "title",
+							"value": "12345678901234567890123456789012345678901",
+							"type": "default"
+						},
+						{
+							"key": "description",
+							"value": "Description04",
+							"type": "default"
+						},
+						{
+							"key": "content",
+							"value": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis, magni delectus eveniet voluptatum fugiat magnam modi quos et quo corrupti a est incidunt quae fuga repellendus nihil deserunt maiores cumque saepe possimus officiis facere. Hic, illum. Amet ratione voluptatibus consequuntur, tempore optio ut suscipit a quidem beatae, labore quaerat totam.",
+							"type": "default"
+						},
+						{
+							"key": "isDraft",
+							"value": "0",
+							"type": "default"
+						},
+						{
+							"key": "delayPublishTo",
+							"value": "2023-02-09",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/posts",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create_post_desc_99",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{usr_token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/E:/Downloads/001.jpg"
+						},
+						{
+							"key": "title",
+							"value": "Title05",
+							"type": "default"
+						},
+						{
+							"key": "description",
+							"value": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt u",
+							"type": "default"
+						},
+						{
+							"key": "content",
+							"value": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis, magni delectus eveniet voluptatum fugiat magnam modi quos et quo corrupti a est incidunt quae fuga repellendus nihil deserunt maiores cumque saepe possimus officiis facere. Hic, illum. Amet ratione voluptatibus consequuntur, tempore optio ut suscipit a quidem beatae, labore quaerat totam.",
+							"type": "default"
+						},
+						{
+							"key": "isDraft",
+							"value": "0",
+							"type": "default"
+						},
+						{
+							"key": "delayPublishTo",
+							"value": "2023-02-09",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/posts",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create_post_desc_100",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{usr_token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/E:/Downloads/001.jpg"
+						},
+						{
+							"key": "title",
+							"value": "Title06",
+							"type": "default"
+						},
+						{
+							"key": "description",
+							"value": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ur",
+							"type": "default"
+						},
+						{
+							"key": "content",
+							"value": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis, magni delectus eveniet voluptatum fugiat magnam modi quos et quo corrupti a est incidunt quae fuga repellendus nihil deserunt maiores cumque saepe possimus officiis facere. Hic, illum. Amet ratione voluptatibus consequuntur, tempore optio ut suscipit a quidem beatae, labore quaerat totam.",
+							"type": "default"
+						},
+						{
+							"key": "isDraft",
+							"value": "0",
+							"type": "default"
+						},
+						{
+							"key": "delayPublishTo",
+							"value": "2023-02-09",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/posts",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create_post_desc_101",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{usr_token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/E:/Downloads/001.jpg"
+						},
+						{
+							"key": "title",
+							"value": "Title07",
+							"type": "default"
+						},
+						{
+							"key": "description",
+							"value": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt uri",
+							"type": "default"
+						},
+						{
+							"key": "content",
+							"value": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis, magni delectus eveniet voluptatum fugiat magnam modi quos et quo corrupti a est incidunt quae fuga repellendus nihil deserunt maiores cumque saepe possimus officiis facere. Hic, illum. Amet ratione voluptatibus consequuntur, tempore optio ut suscipit a quidem beatae, labore quaerat totam.",
+							"type": "default"
+						},
+						{
+							"key": "isDraft",
+							"value": "0",
+							"type": "default"
+						},
+						{
+							"key": "delayPublishTo",
+							"value": "2023-02-09",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/posts",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create_post_content_999",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{usr_token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/E:/Downloads/001.jpg"
+						},
+						{
+							"key": "title",
+							"value": "Title08",
+							"type": "default"
+						},
+						{
+							"key": "description",
+							"value": "Description08",
+							"type": "default"
+						},
+						{
+							"key": "content",
+							"value": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim q",
+							"type": "default"
+						},
+						{
+							"key": "isDraft",
+							"value": "0",
+							"type": "default"
+						},
+						{
+							"key": "delayPublishTo",
+							"value": "2023-02-09",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/posts",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create_post_content_1000",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{usr_token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/E:/Downloads/001.jpg"
+						},
+						{
+							"key": "title",
+							"value": "Title09",
+							"type": "default"
+						},
+						{
+							"key": "description",
+							"value": "Description09",
+							"type": "default"
+						},
+						{
+							"key": "content",
+							"value": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qw",
+							"type": "default"
+						},
+						{
+							"key": "isDraft",
+							"value": "0",
+							"type": "default"
+						},
+						{
+							"key": "delayPublishTo",
+							"value": "2023-02-09",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/posts",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create_post_content_1001",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{usr_token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/E:/Downloads/001.jpg"
+						},
+						{
+							"key": "title",
+							"value": "Title10",
+							"type": "default"
+						},
+						{
+							"key": "description",
+							"value": "Description10",
+							"type": "default"
+						},
+						{
+							"key": "content",
+							"value": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qwe",
+							"type": "default"
+						},
+						{
+							"key": "isDraft",
+							"value": "0",
+							"type": "default"
+						},
+						{
+							"key": "delayPublishTo",
+							"value": "2023-02-09",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/posts",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create_post_date_not_today",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 403\", function () {\r",
+							"    pm.response.to.have.status(403);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{usr_token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/E:/Downloads/001.jpg"
+						},
+						{
+							"key": "title",
+							"value": "Title11",
+							"type": "default"
+						},
+						{
+							"key": "description",
+							"value": "Description11",
+							"type": "default"
+						},
+						{
+							"key": "content",
+							"value": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam ipsum non laboriosam officia repellendus, ea alias ipsam, obcaecati vero quos rem est commodi, nostrum omnis! Aliquid odio nulla magnam inventore, labore rem facere tempore eaque neque voluptates iusto nam quae reiciendis minima possimus quia, doloribus ullam quasi eveniet eum cumque.",
+							"type": "default"
+						},
+						{
+							"key": "isDraft",
+							"value": "0",
+							"type": "default"
+						},
+						{
+							"key": "delayPublishTo",
+							"value": "2023-02-06",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/posts",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create_post_isdraft_1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{usr_token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/E:/Downloads/001.jpg"
+						},
+						{
+							"key": "title",
+							"value": "Title 12",
+							"type": "default"
+						},
+						{
+							"key": "description",
+							"value": "Description12",
+							"type": "default"
+						},
+						{
+							"key": "content",
+							"value": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis, magni delectus eveniet voluptatum fugiat magnam modi quos et quo corrupti a est incidunt quae fuga repellendus nihil deserunt maiores cumque saepe possimus officiis facere. Hic, illum. Amet ratione voluptatibus consequuntur, tempore optio ut suscipit a quidem beatae, labore quaerat totam.",
+							"type": "default"
+						},
+						{
+							"key": "isDraft",
+							"value": "1",
+							"type": "default"
+						},
+						{
+							"key": "delayPublishTo",
+							"value": "2023-02-09",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/posts",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create_post_isdraft_2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{usr_token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/E:/Downloads/001.jpg"
+						},
+						{
+							"key": "title",
+							"value": "Title 13",
+							"type": "default"
+						},
+						{
+							"key": "description",
+							"value": "Description13",
+							"type": "default"
+						},
+						{
+							"key": "content",
+							"value": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis, magni delectus eveniet voluptatum fugiat magnam modi quos et quo corrupti a est incidunt quae fuga repellendus nihil deserunt maiores cumque saepe possimus officiis facere. Hic, illum. Amet ratione voluptatibus consequuntur, tempore optio ut suscipit a quidem beatae, labore quaerat totam.",
+							"type": "default"
+						},
+						{
+							"key": "isDraft",
+							"value": "2",
+							"type": "default"
+						},
+						{
+							"key": "delayPublishTo",
+							"value": "2023-02-09",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/posts",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create_post_isdraft_-1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{usr_token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/E:/Downloads/001.jpg"
+						},
+						{
+							"key": "title",
+							"value": "Title 14",
+							"type": "default"
+						},
+						{
+							"key": "description",
+							"value": "Description14",
+							"type": "default"
+						},
+						{
+							"key": "content",
+							"value": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis, magni delectus eveniet voluptatum fugiat magnam modi quos et quo corrupti a est incidunt quae fuga repellendus nihil deserunt maiores cumque saepe possimus officiis facere. Hic, illum. Amet ratione voluptatibus consequuntur, tempore optio ut suscipit a quidem beatae, labore quaerat totam.",
+							"type": "default"
+						},
+						{
+							"key": "isDraft",
+							"value": "-1",
+							"type": "default"
+						},
+						{
+							"key": "delayPublishTo",
+							"value": "2023-02-09",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/posts",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create_post_image_empty",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{usr_token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": []
+						},
+						{
+							"key": "title",
+							"value": "Title15",
+							"type": "default"
+						},
+						{
+							"key": "description",
+							"value": "Description15",
+							"type": "default"
+						},
+						{
+							"key": "content",
+							"value": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam ipsum non laboriosam officia repellendus, ea alias ipsam, obcaecati vero quos rem est commodi, nostrum omnis! Aliquid odio nulla magnam inventore, labore rem facere tempore eaque neque voluptates iusto nam quae reiciendis minima possimus quia, doloribus ullam quasi eveniet eum cumque.",
+							"type": "default"
+						},
+						{
+							"key": "isDraft",
+							"value": "0",
+							"type": "default"
+						},
+						{
+							"key": "delayPublishTo",
+							"value": "2023-02-09",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/posts",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create_post_image_jpg",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{usr_token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/E:/Downloads/001.jpg"
+						},
+						{
+							"key": "title",
+							"value": "Title16",
+							"type": "default"
+						},
+						{
+							"key": "description",
+							"value": "Description16",
+							"type": "default"
+						},
+						{
+							"key": "content",
+							"value": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam ipsum non laboriosam officia repellendus, ea alias ipsam, obcaecati vero quos rem est commodi, nostrum omnis! Aliquid odio nulla magnam inventore, labore rem facere tempore eaque neque voluptates iusto nam quae reiciendis minima possimus quia, doloribus ullam quasi eveniet eum cumque.",
+							"type": "default"
+						},
+						{
+							"key": "isDraft",
+							"value": "0",
+							"type": "default"
+						},
+						{
+							"key": "delayPublishTo",
+							"value": "2023-02-09",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/posts",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create_post_image_jpeg",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{usr_token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/E:/Downloads/001.jpeg"
+						},
+						{
+							"key": "title",
+							"value": "Title17",
+							"type": "default"
+						},
+						{
+							"key": "description",
+							"value": "Description17",
+							"type": "default"
+						},
+						{
+							"key": "content",
+							"value": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam ipsum non laboriosam officia repellendus, ea alias ipsam, obcaecati vero quos rem est commodi, nostrum omnis! Aliquid odio nulla magnam inventore, labore rem facere tempore eaque neque voluptates iusto nam quae reiciendis minima possimus quia, doloribus ullam quasi eveniet eum cumque.",
+							"type": "default"
+						},
+						{
+							"key": "isDraft",
+							"value": "0",
+							"type": "default"
+						},
+						{
+							"key": "delayPublishTo",
+							"value": "2023-02-09",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/posts",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create_post_image_png",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{usr_token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/E:/Downloads/0012.png"
+						},
+						{
+							"key": "title",
+							"value": "Title18",
+							"type": "default"
+						},
+						{
+							"key": "description",
+							"value": "Description18",
+							"type": "default"
+						},
+						{
+							"key": "content",
+							"value": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam ipsum non laboriosam officia repellendus, ea alias ipsam, obcaecati vero quos rem est commodi, nostrum omnis! Aliquid odio nulla magnam inventore, labore rem facere tempore eaque neque voluptates iusto nam quae reiciendis minima possimus quia, doloribus ullam quasi eveniet eum cumque.",
+							"type": "default"
+						},
+						{
+							"key": "isDraft",
+							"value": "0",
+							"type": "default"
+						},
+						{
+							"key": "delayPublishTo",
+							"value": "2023-02-09",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/posts",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create_post_image_bmp",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 403\", function () {\r",
+							"    pm.response.to.have.status(403);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{usr_token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/E:/Downloads/001.bmp"
+						},
+						{
+							"key": "title",
+							"value": "Title19",
+							"type": "default"
+						},
+						{
+							"key": "description",
+							"value": "Description19",
+							"type": "default"
+						},
+						{
+							"key": "content",
+							"value": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam ipsum non laboriosam officia repellendus, ea alias ipsam, obcaecati vero quos rem est commodi, nostrum omnis! Aliquid odio nulla magnam inventore, labore rem facere tempore eaque neque voluptates iusto nam quae reiciendis minima possimus quia, doloribus ullam quasi eveniet eum cumque.",
+							"type": "default"
+						},
+						{
+							"key": "isDraft",
+							"value": "0",
+							"type": "default"
+						},
+						{
+							"key": "delayPublishTo",
+							"value": "2023-02-09",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/posts",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create_post_image_>2mb",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 403\", function () {\r",
+							"    pm.response.to.have.status(403);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "{{usr_token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/E:/Downloads/0012.png"
+						},
+						{
+							"key": "title",
+							"value": "Title20",
+							"type": "default"
+						},
+						{
+							"key": "description",
+							"value": "Description20",
+							"type": "default"
+						},
+						{
+							"key": "content",
+							"value": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam ipsum non laboriosam officia repellendus, ea alias ipsam, obcaecati vero quos rem est commodi, nostrum omnis! Aliquid odio nulla magnam inventore, labore rem facere tempore eaque neque voluptates iusto nam quae reiciendis minima possimus quia, doloribus ullam quasi eveniet eum cumque.",
+							"type": "default"
+						},
+						{
+							"key": "isDraft",
+							"value": "0",
+							"type": "default"
+						},
+						{
+							"key": "delayPublishTo",
+							"value": "2023-02-09",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/posts",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create_post_valid_no_token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 403\", function () {\r",
+							"    pm.response.to.have.status(403);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Auth-Token",
+						"value": "",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/E:/Downloads/001.jpg"
+						},
+						{
+							"key": "title",
+							"value": "Title21",
+							"type": "default"
+						},
+						{
+							"key": "description",
+							"value": "Description21",
+							"type": "default"
+						},
+						{
+							"key": "content",
+							"value": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam ipsum non laboriosam officia repellendus, ea alias ipsam, obcaecati vero quos rem est commodi, nostrum omnis! Aliquid odio nulla magnam inventore, labore rem facere tempore eaque neque voluptates iusto nam quae reiciendis minima possimus quia, doloribus ullam quasi eveniet eum cumque.",
+							"type": "default"
+						},
+						{
+							"key": "isDraft",
+							"value": "0",
+							"type": "default"
+						},
+						{
+							"key": "delayPublishTo",
+							"value": "2023-02-09",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://test-stand.gb.ru/gateway/posts",
+					"protocol": "https",
+					"host": [
+						"test-stand",
+						"gb",
+						"ru"
+					],
+					"path": [
+						"gateway",
+						"posts"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "usr_login",
+			"value": "Jack00",
+			"type": "default"
+		},
+		{
+			"key": "usr_pass",
+			"value": "6b4271b90c",
+			"type": "default"
+		},
+		{
+			"key": "usr_token",
+			"value": "",
+			"type": "default"
+		}
+	]
+}
